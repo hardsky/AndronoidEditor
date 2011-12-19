@@ -1,0 +1,7 @@
+blue.png
+green.png
+lst.txt
+pink.png
+red.png
+sea.png
+yellow.png
