@@ -3,59 +3,22 @@ import QtQuick 1.0
 
 GridView {
     id: gvBricks
-    width: 196
-    height: 140
     boundsBehavior: Flickable.StopAtBounds
-    cellHeight: 70
-    cellWidth: 70
-    property color colorCode: "lightgreen"
+    property string brickPath: ""
+    flickableDirection: Flickable.AutoFlickDirection
+    cellWidth: 50; cellHeight: 20
 
-    delegate: Item {
-        x: 5
-        height: 50
-        Column {
-            spacing: 5
-            Rectangle {
-                width: 40
-                height: 40
-                color: colorCode
-                anchors.horizontalCenter: parent.horizontalCenter
+    delegate: Image{
+                source: path
+                width: gvBricks.cellWidth - 4
+                height: gvBricks.cellHeight - 4
 
                 MouseArea {
                     id: mouse_area1
                     anchors.fill: parent
-                    onClicked: gvBricks.colorCode = parent.color
+                    onClicked: gvBricks.brickPath = parent.source
                 }
-
             }
 
-            Text {
-                x: 5
-                text: name
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.bold: true
-            }
-        }
-    }
-    model: ListModel {
-        ListElement {
-            name: "Grey"
-            colorCode: "grey"
-        }
-
-        ListElement {
-            name: "Red"
-            colorCode: "red"
-        }
-
-        ListElement {
-            name: "Blue"
-            colorCode: "blue"
-        }
-
-        ListElement {
-            name: "Green"
-            colorCode: "green"
-        }
-    }
+    model: BrickListModel { }
 }

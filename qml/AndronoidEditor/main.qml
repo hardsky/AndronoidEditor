@@ -37,21 +37,24 @@ Rectangle {
 
         Bricks {
             id: ctrBricks
-            contentWidth: 196
+            width: 196
+            height: 140
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             anchors.topMargin: 2
-            onColorCodeChanged: ctrGridMosaic.colorCode = colorCode
+            onBrickPathChanged: ctrGridMosaic.brickPath = brickPath
         }
 
         Backgrounds {
             id: ctrBackgrounds
+            keyNavigationWraps: true
             contentWidth: 196
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 2
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: ctrBricks.bottom
             anchors.topMargin: 2
+            onBgPathChanged: ctrGridMosaic.backgroundPath = bgPath
         }
     }
 }

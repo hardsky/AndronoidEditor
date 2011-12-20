@@ -6,46 +6,19 @@ ListView {
     width: 196
     cacheBuffer: 75
     boundsBehavior: Flickable.StopAtBounds
-    delegate: Item {
-        x: 5
-        height: 40
-        Row {
-            id: row1
-            spacing: 10
-            Rectangle {
-                width: 40
-                height: 40
-                color: colorCode
-            }
+    property string bgPath: ""
 
-            Text {
-                text: name
-                anchors.verticalCenter: parent.verticalCenter
-                font.bold: true
+    delegate: Image {
+
+            id: imgBackground
+            source: backPath
+            width: 196
+
+            MouseArea {
+                id: mouse_area1
+                anchors.fill: parent
+                onClicked: lvBackgrounds.bgPath = imgBackground.source
             }
         }
-    }
-    model: ListModel {
-
-        ListElement {
-            name: "Grey"
-            colorCode: "grey"
-        }
-
-        ListElement {
-            name: "Red"
-            colorCode: "red"
-        }
-
-        ListElement {
-            name: "Blue"
-            colorCode: "blue"
-        }
-
-        ListElement {
-            name: "Green"
-            colorCode: "green"
-        }
-
-    }
+    model: BackListModel { }
 }
