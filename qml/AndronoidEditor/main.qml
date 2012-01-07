@@ -4,8 +4,68 @@ import QtQuick 1.0
 Rectangle {
     id: page
     width: 800
-    height: 600
+    height: 620
     color: "#343434"
+
+    Rectangle{
+        id: topToolbar
+        anchors.left: parent.left
+        anchors.top: parent.top
+        width: parent.width
+        height: 20
+        Row{
+            Text{text: "Строки:"}
+
+            Rectangle{
+                border.width: 1
+                width: 80
+                height: 20
+                TextInput {
+                    id: txtRows
+                    font.pixelSize: 12
+                    anchors.fill: parent
+                }
+            }
+
+            Text{text: "Колонки:"}
+
+            Rectangle{
+                border.width: 1
+                width: 80
+                height: 20
+
+                TextInput {
+                    id: txtCols
+                    font.pixelSize: 12
+                    anchors.fill: parent
+                }
+            }
+
+            Rectangle{
+                border.width: 1
+                radius: 5
+                width: 150
+                height:20
+                Text{text: "Применить!"}
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: ctrGridMosaic.changeDimensions(txtRows.text, txtCols.text)
+                }
+            }
+        }
+        Rectangle{
+            border.width: 1
+            radius: 5
+            width: 150
+            height:20
+            anchors.right: parent.right
+            Text{text: "Сохранить!"}
+            MouseArea{
+                anchors.fill: parent
+                onClicked: ctrGridMosaic.parseMosaic()
+            }
+        }
+    }
 
     Rectangle {
         id: mosaic
@@ -15,12 +75,12 @@ Rectangle {
         border.color: "#1c841c"
         anchors.left: parent.left
         anchors.leftMargin: 1
-        anchors.top: parent.top
+        anchors.top: topToolbar.bottom
         anchors.topMargin: 1
 
         GridMosaic {
             id: ctrGridMosaic
-            anchors.centerIn: parent
+            anchors.fill: parent
         }
     }
 
@@ -30,7 +90,7 @@ Rectangle {
         height: 597
         color: "#00000000"
         border.color: "#1c841c"
-        anchors.top: parent.top
+        anchors.top: topToolbar.bottom
         anchors.topMargin: 1
         anchors.left: mosaic.right
         anchors.leftMargin: 2
