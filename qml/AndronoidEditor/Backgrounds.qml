@@ -3,7 +3,7 @@ import QtQuick 1.0
 
 ListView {
     id: lvBackgrounds
-    width: 196
+    clip: true
     cacheBuffer: 75
     boundsBehavior: Flickable.StopAtBounds
     property string bgPath: ""
